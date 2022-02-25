@@ -22,7 +22,7 @@ class Movie
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -30,7 +30,7 @@ class Movie
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -38,7 +38,7 @@ class Movie
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -46,7 +46,7 @@ class Movie
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -54,7 +54,7 @@ class Movie
     /**
      * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -62,7 +62,7 @@ class Movie
     /**
      * @param string $image
      */
-    public function setImage($image)
+    public function setImage(string $image): void
     {
         $this->image = $image;
     }
@@ -70,7 +70,7 @@ class Movie
     /**
      * @return int
      */
-    public function getYear()
+    public function getYear(): int
     {
         return $this->year;
     }
@@ -78,7 +78,7 @@ class Movie
     /**
      * @param int $year
      */
-    public function setYear($year)
+    public function setYear(int $year): void
     {
         $this->year = $year;
     }
@@ -86,7 +86,7 @@ class Movie
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -94,7 +94,7 @@ class Movie
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }

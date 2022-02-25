@@ -20,6 +20,8 @@ class MovieController
             case Actions::READ:
                 if ($_REQUEST['id']) {
                     $this->readAction($_REQUEST['id']);
+                } else if ($_REQUEST['filter']) {
+                    $this->readFilterAction($_REQUEST['filter']);
                 } else {
                     $this->readAllAction($request);
                 }
@@ -51,11 +53,12 @@ class MovieController
     public function updateAction($request)
     {
         $movie = new Movie();
-        $movie->setId($_POST['id']);
-        $movie->setName($_POST['name']);
-        $movie->setImage($_POST['image']);
-        $movie->setYear($_POST['year']);
-        $movie->setDescription($_POST['description']);
+        $request = json_decode(file_get_contents("php://input"));
+        $movie->setId($request->name->id);
+        $movie->setName($request->name->name);
+        $movie->setImage($request->name->image);
+        $movie->setYear($request->name->year);
+        $movie->setDescription($request->name->description);
         $movieHelper = new MovieHelper();
         $movieHelper->update($movie);
     }
@@ -64,6 +67,16 @@ class MovieController
     {
         $movieHelper = new MovieHelper();
         $movies = $movieHelper->fetch($request);
+        http_response_code(200);
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        echo json_encode($movies);
+    }
+
+    public function readFilterAction($request)
+    {
+        $movieHelper = new MovieHelper();
+        $movies = $movieHelper->fetchByNameOrYear($request);
         http_response_code(200);
         header('Content-Type: application/json; charset=utf-8');
         header('Access-Control-Allow-Origin: *');
@@ -83,7 +96,7 @@ class MovieController
     public function deleteAction($request)
     {
         $movieHelper = new MovieHelper();
-        $movieHelper->delete($request['id']);
+        $movieHelper->delete($_REQUEST['id']);
     }
 
 }

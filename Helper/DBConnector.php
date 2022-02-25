@@ -37,7 +37,7 @@ class DBConnector
      * @throws \Exception
      * @return void
      */
-    public function connect()
+    public function connect() : void
     {
         $this->dbConnection = new mysqli($this->host, $this->username, $this->password,$this->db);
 
@@ -49,7 +49,7 @@ class DBConnector
     /**
      * @param string $query
      */
-    public function execQuery($query)
+    public function execQuery(string $query)
     {
         return $this->dbConnection->query($query);
     }
@@ -59,7 +59,7 @@ class DBConnector
      * @throws \Exception
      * @return void
      */
-    private function exceptionHandler(string $message)
+    private function exceptionHandler(string $message): void
     {
         throw new \Exception($message);
     }
